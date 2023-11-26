@@ -95,7 +95,7 @@ image: export TARGET_PLATFORM := $(file < PLATFORM)
 image: TARGETARCH := $(lastword $(subst /, ,$(TARGET_PLATFORM)))
 image: TARGETARCH := $(if $(TARGETARCH),$(TARGETARCH),$(BUILD_ARCH))
 image:
-	@if [ @$${TARGET_PLATFORM} == '@' ]; then \
+	@if [ @$${TARGET_PLATFORM} = '@' ]; then \
 		docker build . -t ${REGISTRY}/${BINARY_NAME}:${VERSION}-${TARGETARCH}; \
 	else \
 		docker build . --platform=${TARGET_PLATFORM} -t ${REGISTRY}/${BINARY_NAME}:${VERSION}-${TARGETARCH}; \

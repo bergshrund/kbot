@@ -1,6 +1,6 @@
-FROM --platform=$BUILDPLATFORM quay.io/projectquay/golang:1.20 as builder
+FROM quay.io/projectquay/golang:1.20 as builder
 
-ARG TARGETPLATFORM
+ARG TARGETPLATFORM=linux/amd64
 ARG BUILDPLATFORM=linix/amd64
 
 RUN echo "Build running on $BUILDPLATFORM, building for $TARGETPLATFORM"
@@ -10,7 +10,7 @@ WORKDIR /tmp/kbot
 
 RUN make $TARGETPLATFORM
 
-FROM --platform=$BUILDPLATFORM alpine:latest as stub-builder
+FROM alpine:latest as stub-builder
 
 FROM scratch
 
