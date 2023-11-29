@@ -1,0 +1,5 @@
+name: "kubeplugin"
+shortDesc: ""
+longDesc: >
+  Long description
+command: ./kubeplugin node kube-system

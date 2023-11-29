@@ -1,6 +1,6 @@
 BINARY_NAME := kbot
 VERSION := $(shell git describe --tags --abbrev=0 2>/dev/null)-$(shell git rev-parse --short HEAD)
-REGISTRY := us-central1-docker.pkg.dev/data1co/kbot
+REGISTRY := bergshrund
 BUILD_ARCH := $(subst x86_64,amd64,$(shell uname -m))
 
 TARGET := $(BINARY_NAME)
@@ -115,7 +115,7 @@ push: TARGETARCH := $(if $(TARGETARCH),$(TARGETARCH),$(BUILD_ARCH))
 push:
 	docker push ${REGISTRY}/${BINARY_NAME}:${VERSION}-${TARGETARCH}
 
-export IMAGE := $(shell docker image ls ${REGISTRY}/${BINARY_NAME} -q | head -1)
+clean: export IMAGE := $(shell docker image ls ${REGISTRY}/${BINARY_NAME} -q | head -1)
 clean:
 	@rm -fr ${BINARY_NAME}
 	@if [ @$${IMAGE} != '@' ]; then echo 'Removing image ${IMAGE}'; docker rmi -f $${IMAGE}; fi
