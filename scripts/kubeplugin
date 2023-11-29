@@ -13,8 +13,6 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-# Define command-line arguments
-
 if [ -z "$1" ]; then
     RESOURCE_TYPE=pod
 else
@@ -26,7 +24,6 @@ if [ -z "$2" ]; then
 else
     NS=$2
 fi
-
 
 # Retrieve resource usage statistics from Kubernetes
 kubectl top $RESOURCE_TYPE -n $NS | tail -n +2 | while read line 
