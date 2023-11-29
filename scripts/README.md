@@ -25,7 +25,14 @@ Running:
 ```
 kubectl kubeplugin
 ```
-will output memory and CPU utilization for pods in kube-system namespace
+will output current memory and CPU utilization for pods in kube-system namespace
+```
+pod     kube-system     coredns-77ccd57875-csjlk        3m      13Mi
+pod     kube-system     local-path-provisioner-957fdf8bc-l27wd  1m      7Mi
+pod     kube-system     metrics-server-648b5df564-z5vsv 8m      17Mi
+pod     kube-system     svclb-traefik-10df67bd-wf2ch    0m      0Mi
+pod     kube-system     traefik-64f55bb67d-4258d        1m      26Mi
+```
 
 You also can get such statistics for arbitrary namespace using the next command variant:
 ```
