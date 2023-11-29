@@ -1,6 +1,6 @@
 # kubeplugin
 
-A wrapper around the kubectl top command that makes it easier to display resource utilization statistics for pods and nodes in Kubernetes cluster.
+A wrapper around the ```kubectl top``` command that makes it easier to display resource utilization statistics for pods and nodes in Kubernetes cluster.
 
 ## Installing
 
@@ -21,9 +21,13 @@ The following compatible plugins are available:
 
 ## Running plugin
 
+Running:
 ```
 kubectl kubeplugin
 ```
+will output memory and CPU utilization for pods in kube-system namespace
+
+You also can get such statistics for arbitrary namespace using the next command variant:
 ```
 kubectl kubeplugin pod <name-space>
 ```
