@@ -17,4 +17,5 @@
     WORKDIR /
     COPY --from=builder /tmp/kbot/kbot .
     COPY --from=stub-builder /etc/ssl/certs/ca-certificates.crt /etc/ssl/certs/
-    ENTRYPOINT ["/kbot"]    
+    CMD ["start"]
+    ENTRYPOINT ["/kbot"]
