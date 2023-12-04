@@ -1,0 +1,13 @@
+replicaCount: 1
+
+image:
+  repository: "bergshrund"
+  tag: "v1.0.4"
+  arch: "amd64"
+  pullPolicy: Always
+secret:
+  name: "kbot"
+
+
+securityContext:
+  privileged: true
