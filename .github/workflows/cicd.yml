@@ -2,6 +2,7 @@ name: kbot ci/cd
 
 on:
   push:
+    branches: [ develop ]
 
 env:
   REGISTRY: ghcr.io
