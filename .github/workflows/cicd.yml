@@ -32,4 +32,4 @@ jobs:
       - name: Build&Push
         env:
           APP: "kbot"
-        run: make image
+        run: make image REGISTRY=ghcr.io/bergshrund; make push REGISTRY=ghcr.io/bergshrund
