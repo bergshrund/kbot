@@ -1,7 +1,7 @@
 replicaCount: 1
 image:
   repository: "bergshrund"
-  tag: "v1.0.0-1d9a8dd"
+  tag: "v1.0.5-3d04ecd"
   arch: "amd64"
   pullPolicy: Always
 secret:
