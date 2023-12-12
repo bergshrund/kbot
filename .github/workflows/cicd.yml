@@ -3,8 +3,6 @@ name: kbot ci/cd
 on:
   push:
     branches: [ develop ]
-    tags:
-      - 'v*.*.*'
 
 env:
   REGISTRY: ghcr.io
