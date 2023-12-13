@@ -14,13 +14,21 @@ pipeline {
     }
 
     stages {
+
         stage('clone') {
             steps {
                 echo 'CLONE REPOSITORY'
                   git branch: "${BRANCH}", url: "${REPO}"
             }
         }
-    
+
+        stage('init platform') {
+            steps {
+                echo 'INIT BUILD PARAMETERS'
+                sh 'echo linux/arm64 > PLATFORM'
+            }
+        }
+
         stage('test') {
             steps {
                 echo 'TEST EXECUTION STARTED'
