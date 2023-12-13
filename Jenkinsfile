@@ -25,7 +25,7 @@ pipeline {
         stage('init platform') {
             steps {
                 echo 'INIT BUILD PARAMETERS'
-                sh 'echo linux/arm64 > PLATFORM'
+                sh 'cat linux/arm64 > PLATFORM'
             }
         }
 
