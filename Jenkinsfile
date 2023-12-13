@@ -25,30 +25,29 @@ pipeline {
         stage('init platform') {
             steps {
                 echo 'INIT BUILD PARAMETERS'
-                sh 'echo linux/arm64 > PLATFORM'
-                sh "echo ${params.OS}/${params.ARCH}"
-                sh 'cat PLATFORM'
+                sh "echo ${params.OS}/${params.ARCH} > PLATFORM"
+                sh "cat PLATFORM"
             }
         }
 
         stage('test') {
             steps {
                 echo 'TEST EXECUTION STARTED'
-                sh 'make test'
+                sh "make test"
             }
         }
         
         stage('build') {
             steps {
                 echo 'BUILD EXECUTION STARTED'
-                sh 'make'
+                sh "make ${params.OS}/${params.ARCH}"
             }
         }
         
         stage('image') {
             steps {
                 echo 'BUILD DOCKER IMAGE STARTED'
-                sh 'make image'
+                sh "make image"
             }
         }
         
