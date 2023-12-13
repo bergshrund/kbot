@@ -26,6 +26,7 @@ pipeline {
             steps {
                 echo 'INIT BUILD PARAMETERS'
                 sh 'echo linux/arm64 > PLATFORM'
+                sh 'echo ${params.OS}/${params.ARCH}'
                 sh 'cat PLATFORM'
             }
         }
@@ -40,7 +41,7 @@ pipeline {
         stage('build') {
             steps {
                 echo 'BUILD EXECUTION STARTED'
-                sh 'make build'
+                sh 'make'
             }
         }
         
