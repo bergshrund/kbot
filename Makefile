@@ -92,28 +92,33 @@ run:
 .PHONY: image
 ifeq ($(lastword $(MAKECMDGOALS)),image)
 image: export TARGET_PLATFORM := $(file < PLATFORM)
+image: TARGETOS := $(firstword $(subst /, ,$(TARGET_PLATFORM)))
+image: TARGETOS := $(if $(TARGETOS),$(TARGETOS),linux)
 image: TARGETARCH := $(lastword $(subst /, ,$(TARGET_PLATFORM)))
 image: TARGETARCH := $(if $(TARGETARCH),$(TARGETARCH),$(BUILD_ARCH))
 image:
 	@if [ @$${TARGET_PLATFORM} = '@' ]; then \
-		docker build . -t ${REGISTRY}/${BINARY_NAME}:${VERSION}-${TARGETARCH}; \
+		docker build . -t ${REGISTRY}/${BINARY_NAME}:${VERSION}-${TARGETOS}-${TARGETARCH}; \
 	else \
-		docker build . --platform=${TARGET_PLATFORM} -t ${REGISTRY}/${BINARY_NAME}:${VERSION}-${TARGETARCH}; \
+		docker build . --platform=${TARGET_PLATFORM} -t ${REGISTRY}/${BINARY_NAME}:${VERSION}-${TARGETOS}-${TARGETARCH}; \
 	fi
 else
 image: TARGET_PLATFORM := $(lastword $(MAKECMDGOALS))
+image: TARGETOS := $(firstword $(subst /, ,$(TARGET_PLATFORM)))
 image: TARGETARCH := $(lastword $(subst /, ,$(TARGET_PLATFORM)))
 image:
 	@echo ${TARGET_PLATFORM}
-	docker build . --platform=${TARGET_PLATFORM} -t ${REGISTRY}/${BINARY_NAME}:${VERSION}-${TARGETARCH}
+	docker build . --platform=${TARGET_PLATFORM} -t ${REGISTRY}/${BINARY_NAME}:${VERSION}-${TARGETOS}-${TARGETARCH}
 endif
 
 .PHONY: push
 push: TARGET_PLATFORM := $(file < PLATFORM)
+push: TARGETOS := $(firstword $(subst /, ,$(TARGET_PLATFORM)))
+push: TARGETOS := $(if $(TARGETOS),$(TARGETOS),linux)
 push: TARGETARCH := $(lastword $(subst /, ,$(TARGET_PLATFORM)))
 push: TARGETARCH := $(if $(TARGETARCH),$(TARGETARCH),$(BUILD_ARCH))
 push:
-	docker push ${REGISTRY}/${BINARY_NAME}:${VERSION}-${TARGETARCH}
+	docker push ${REGISTRY}/${BINARY_NAME}:${VERSION}-${TARGETOS}-${TARGETARCH}
 
 clean: export IMAGE := $(shell docker image ls ${REGISTRY}/${BINARY_NAME} -q | head -1)
 clean:

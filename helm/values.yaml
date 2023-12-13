@@ -1,10 +1,13 @@
 replicaCount: 1
 image:
+  registry: "ghcr.io"
   repository: "bergshrund"
-  tag: "v1.0.5-3d04ecd"
+  tag: "v1.0.5-54ba7a4"
   arch: "amd64"
+  os: "linux"
   pullPolicy: Always
 secret:
   name: "kbot"
+  env: "TELE_TOKEN"
 securityContext:
   privileged: true
