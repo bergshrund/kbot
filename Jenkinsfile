@@ -1,5 +1,10 @@
 pipeline {
     agent any
+    parameters {
+
+        choice(name: 'OS', choices: ['linux', 'darwin', 'windows', 'all'], description: 'Pick OS')
+
+    }
     
     environment {
         REPO = 'https://github.com/bergshrund/kbot'
