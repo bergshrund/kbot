@@ -2,7 +2,7 @@ replicaCount: 1
 image:
   registry: "ghcr.io"
   repository: "bergshrund"
-  tag: "v1.0.5-54ba7a4"
+  tag: "v1.0.5-08ba8c9"
   arch: "amd64"
   os: "linux"
   pullPolicy: Always
